@@ -1,33 +1,27 @@
 package com.ecommerce.microcommerce.model;
 
 import java.sql.Date;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import org.springframework.dao.support.DaoSupport;
-
-// @JsonIgnoreProperties(value = {"prixAchat", "id"})    si plusieur chose a cacher
 @Entity
 public class Comment {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private int user_id;
+    private User user;
     private Date createAt;
     private String title;
     private String content;
 
-
     public Comment() {
     }
 
-    public Comment(int id, int user_id, String title, String content, Date createAt) {
+    public Comment(int id, User user, String title, String content, Date createAt) {
         this.id = id;
-        this.user_id = user_id;
+        this.user = user;
         this.title = title;
         this.createAt = createAt;
         this.content = content;
@@ -43,12 +37,12 @@ public class Comment {
     }
 
     /////////////
-    public int getuserId() {
-        return user_id;
+    public User getuser() {
+        return user;
     }
 
-    public void setuserId(int user_id) {
-        this.user_id = user_id;
+    public User setuser(User user) {
+        return this.user = user;
     }
 
     /////////
@@ -82,6 +76,6 @@ public class Comment {
 
     @Override
     public String toString() {
-        return "Product{" + "id=" + id + ", user_id='" + user_id + ", title='" + title + ", createAt='" + createAt + ", content='" + content + '}';
+        return "Comment{" + "id=" + id + ", user='" + user + ", title='" + title + ", createAt='" + createAt + ", content='" + content + '}';
     }
 }
