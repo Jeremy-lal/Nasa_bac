@@ -3,11 +3,12 @@ package com.ecommerce.microcommerce;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+
 @SpringBootApplication
-public class MicrocommerceApplication {
+public class NasaProject{
 
 	public static void main(String[] args) {
-		SpringApplication.run(MicrocommerceApplication.class, args);
+		SpringApplication.run(NasaProject.class, args);
 	}
 
 }
