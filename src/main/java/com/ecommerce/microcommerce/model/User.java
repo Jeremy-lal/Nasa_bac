@@ -1,12 +1,20 @@
 package com.ecommerce.microcommerce.model;
 
+import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 // @JsonIgnoreProperties(value = {"prixAchat", "id"})    si plusieur chose a cacher
 @Entity
+@Table(name="user")
 public class User {
 
     @Id
@@ -21,6 +29,9 @@ public class User {
     @JsonIgnore
     private String pwd;
 
+    @OneToMany(mappedBy="user")
+    private Set<Comment> comments;
+
     public User() {
     }
 
@@ -32,7 +43,7 @@ public class User {
         this.imgURL = imgURL;
         this.pwd = pwd;
     }
-
+    
     //////////
     public int getId() {
         return id;
