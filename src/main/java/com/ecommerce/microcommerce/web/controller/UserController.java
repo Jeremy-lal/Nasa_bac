@@ -53,10 +53,10 @@ public class UserController {
         return ResponseEntity.created(location).build();
     }
 
-    // @DeleteMapping(value = "/users/{id}")
-    // public void deleteUser(@PathVariable int id) {
-    //     UserRepo.deleteById(id);
-    // }
+    @DeleteMapping(value = "/users/{id}")
+    public void deleteUser(@PathVariable int id) {
+        UserRepo.deleteById(id);
+    }
 
     @PutMapping(value = "/users")
     public void updateUser(@RequestBody User User) {

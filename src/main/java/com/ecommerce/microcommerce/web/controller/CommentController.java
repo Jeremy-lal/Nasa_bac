@@ -47,10 +47,10 @@ public class CommentController {
         return ResponseEntity.created(location).build();
     }
 
-    // @DeleteMapping(value = "/Comments/{id}")
-    // public void deleteComment(@PathVariable int id) {
-    //     CommentRepo.deleteById(id);
-    // }
+    @DeleteMapping(value = "/comments/{id}")
+    public void deleteComment(@PathVariable int id) {
+        CommentRepo.deleteById(id);
+    }
 
     @PutMapping(value = "/comments")
     public void updateComment(@RequestBody Comment Comment) {
