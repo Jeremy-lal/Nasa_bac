@@ -1,12 +1,15 @@
 package com.ecommerce.microcommerce.model;
 
 import java.sql.Date;
+import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 @Entity
 @Table(name="comment")
@@ -20,12 +23,20 @@ public class Comment {
     private String content;
 
     @ManyToOne
+    @JoinColumn(name="comment_id", nullable=false)
+    private Comment parent;
+    
+    @OneToMany(mappedBy="parent")
+    private Set<Comment> comments;
+
+
+    @ManyToOne
     @JoinColumn(name="user_id", nullable=false)
     private User user;
 
     public Comment() {
     }
-
+    
     public Comment(int id, User user, String title, String content, Date createAt) {
         this.id = id;
         this.user = user;
@@ -79,10 +90,19 @@ public class Comment {
     public void setcontent(String content) {
         this.content = content;
     }
+    ///////////////////
+    ////////////
+    public Set<Comment> getcomment() {
+        return comments;
+    }
 
+    public void setcomments(Set<Comment> comments) {
+        this.comments = comments;
+    }
+    ///////////////////
 
     @Override
     public String toString() {
-        return "Comment{" + "id=" + id + ", user='" + user + ", title='" + title + ", createAt='" + createAt + ", content='" + content + '}';
+        return "Comment{" + "id=" + id + ", user='" + user + ", comments='" + comments + ", title='" + title + ", createAt='" + createAt + ", content='" + content + '}';
     }
 }
